@@ -1,20 +1,34 @@
-# Phishing Incident Response Playbook & Automation Tool
+# Phishing Incident Response Playbook and Email Header Reader
 
-## 📌 Project Overview
-This repository contains a comprehensive, production-ready **Phishing Incident Response Playbook** aligned with the **NIST SP 800-61 Rev. 2** guidelines, paired with a custom **Python Automation Script** to parse indicators of compromise (IOCs) from raw, suspicious email files. 
+An educational incident-response documentation project with a small Python utility for inspecting raw email headers.
 
-This project demonstrates a structured approach to detecting, analyzing, containing, and recovering from email-based attacks—specifically credential harvesting and malicious payloads—while leveraging automation to reduce manual analyst triage times.
+## Included files
 
----
+- [phishing_incident_playbook.md](phishing_incident_playbook.md): written response playbook
+- [email_headers.py](email_headers.py): reads an email file and prints its headers
 
-## 🛠️ Demonstrated Skills & Technologies
+## Run the header reader
 
-| Domain | Skills Demonstrated | Tools & Technologies |
-|---|---|---|
-| **Incident Response** | Triage, containment, and eradication planning; policy design; NIST framework alignment. | Secure Email Gateways (SEG), SPF/DKIM/DMARC |
-| **Security Analysis** | Header analysis, hop tracking, URL defanging, and file hash analysis. | VirusTotal, Any.Run, URLVoid |
-| **Automation & DevSecOps** | Python programming, regex-based IOC extraction, and raw email parsing. | Python 3, `re`, `email.parser` |
-| **Technical Writing** | Clear, actionable documentation designed for SOC analysts. | Markdown |
+Requires Python 3 with the standard-library email package. Use a saved lab email in .eml format.
 
----
+```console
+python email_headers.py sample.eml
+```
 
+The filename was changed from email.py to avoid shadowing Python's built-in email package. A sample.eml fixture is not currently included.
+
+## What the script does
+
+Prints From, To, Subject, Date, and Message-ID, followed by the complete parsed header list. The script reads a local file and does not send messages.
+
+## Scope and limitations
+
+- This is a learning project, not a validated production incident-response platform.
+- The current script does not extract URLs, attachment hashes, or a complete IOC report.
+- It does not verify SPF, DKIM, or DMARC results independently. Header values are evidence to assess, not proof of sender identity.
+- File errors and malformed messages need stronger error handling.
+- No automated tests or captured execution results are included.
+
+## Related repository
+
+The similarly named Phishing-Incident-Response-Playbook repository was an empty placeholder. This repository contains the actual playbook and Python utility.
